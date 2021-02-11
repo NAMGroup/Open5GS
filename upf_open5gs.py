@@ -12,7 +12,7 @@ def parseYAML():
     try:
         with open(r'./etc/open5gs/upfOld.yaml') as file:
             documents = yaml.safe_load(file)
-        with open(r'upf_open5gs_input.yaml') as file2:
+        with open(r'/home/ubuntu/Open5GS/upf_open5gs_input.yaml') as file2:
             doc2 = yaml.safe_load(file2)
     except Exception as e:
         print("NOT A YAML FILE")
