@@ -1,0 +1,10 @@
+smf:
+  pdn:
+    - addr: 10.45.0.1/16
+      dev: ogstun
+      apn: internet
+    #- addr: cafe::1/64
+upf:
+  pfcp:
+    - addr: 127.0.0.7
+      apn: internet
