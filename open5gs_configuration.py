@@ -19,8 +19,8 @@ def change_NRF(document):
 def parseAUSF():
     documents = None
     try:
-        with open(r'ausfOld.yaml') as file:
-            # with open(r'/etc/open5gs/ausfOld.yaml') as file:
+        # with open(r'ausfOld.yaml') as file:
+        with open(r'/etc/open5gs/ausfOld.yaml') as file:
 
             documents = yaml.safe_load(file)
     except Exception as e:
@@ -39,8 +39,8 @@ def parseAUSF():
     # print(documents)
 
     try:
-        with open('ausf.yaml', 'w') as outfile:
-            # with open('/etc/open5gs/ausf.yaml', 'w') as outfile:
+        # with open('ausf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/ausf.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -50,8 +50,8 @@ def parseAUSF():
 def parseUDM():
     documents = None
     try:
-        # with open(r'/etc/open5gs/upfOld.yaml') as file:
-        with open(r'udmOld.yaml') as file:
+        with open(r'/etc/open5gs/upfOld.yaml') as file:
+        # with open(r'udmOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -69,8 +69,8 @@ def parseUDM():
     # print(documents)
 
     try:
-        # with open('/etc/open5gs/udm.yaml', 'w') as outfile:
-        with open('udm.yaml', 'w') as outfile:
+        with open('/etc/open5gs/udm.yaml', 'w') as outfile:
+        # with open('udm.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -80,24 +80,23 @@ def parseUDM():
 def parseNRF():
     documents = None
     try:
-        with open(r'nrfOld.yaml') as file:
-            # with open(r'/etc/open5gs/nrfOld.yaml') as file:
-
+        # with open(r'nrfOld.yaml') as file:
+        with open(r'/etc/open5gs/nrfOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
         exit()
 
     own_ip = find_IP()
-    print(documents["nrf"]["sbi"]["addr"][0])
+    # print(documents["nrf"]["sbi"]["addr"][0])
     try:
         documents["nrf"]["sbi"]["addr"][0] = own_ip
     except:
         print("Paths have been changed")
 
     try:
-        with open('nrf.yaml', 'w') as outfile:
-            # with open('/etc/open5gs/nrf.yaml', 'w') as outfile:
+        # with open('nrf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/nrf.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -107,8 +106,8 @@ def parseNRF():
 def parseAMF():
     documents = None
     try:
-        with open(r'amfOld.yaml') as file:
-            # with open(r'/etc/open5gs/amfOld.yaml') as file:
+        # with open(r'amfOld.yaml') as file:
+        with open(r'/etc/open5gs/amfOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -123,8 +122,8 @@ def parseAMF():
         print("Paths have been changed")
 
     try:
-        with open('amf.yaml', 'w') as outfile:
-            # with open('/etc/open5gs/amf.yaml', 'w') as outfile:
+        # with open('amf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/amf.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -135,11 +134,11 @@ def parseSMF():
     documents = None
     doc2 = None
     try:
-        # with open(r'/etc/open5gs/smfOld.yaml') as file:
-        with open(r'smfOld.yaml') as file:
+        with open(r'/etc/open5gs/smfOld.yaml') as file:
+        # with open(r'smfOld.yaml') as file:
             documents = yaml.safe_load(file)
-        with open(r'smf_open5gs_input.yaml') as file2:
-            # with open(r'/home/ubuntu/Open5GS/smf_open5gs_input.yaml') as file2:
+        with open(r'/home/ubuntu/Open5GS/smf_open5gs_input.yaml') as file2:
+        # with open(r'smf_open5gs_input.yaml') as file2:
             doc2 = yaml.safe_load(file2)
     except Exception as e:
         print(e)
@@ -156,25 +155,29 @@ def parseSMF():
         print(e)
         exit()
 
-    with open('smf.yaml', 'w') as outfile:
-        # with open('/etc/open5gs/smf.yaml', 'w') as outfile:
-        yaml.dump(documents, outfile, default_flow_style=False)
+    try:
+        # with open('smf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/smf.yaml', 'w') as outfile:
+            yaml.dump(documents, outfile, default_flow_style=False)
+    except Exception as e:
+        print(e)
+        exit()
 
 
 def parseUPF():
     documents = None
     doc2 = None
     try:
-        # with open(r'/etc/open5gs/upfOld.yaml') as file:
-        with open(r'upfOld.yaml') as file:
+        with open(r'/etc/open5gs/upfOld.yaml') as file:
+        # with open(r'upfOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
         exit()
 
     try:
-        # with open(r'/home/ubuntu/Open5GS/upf_open5gs_input.yaml') as file2:
-        with open(r'upf_open5gs_input.yaml') as file2:
+        with open(r'/home/ubuntu/Open5GS/upf_open5gs_input.yaml') as file2:
+        # with open(r'upf_open5gs_input.yaml') as file2:
             doc2 = yaml.safe_load(file2)
     except Exception as e:
         print(e)
@@ -190,8 +193,8 @@ def parseUPF():
         print("Paths have been changed")
 
     try:
-        # with open('/etc/open5gs/upf.yaml', 'w') as outfile:
-        with open('upf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/upf.yaml', 'w') as outfile:
+        # with open('upf.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -201,8 +204,8 @@ def parseUPF():
 def parsePCF():
     documents = None
     try:
-        with open(r'pcfOld.yaml') as file:
-            # with open(r'/etc/open5gs/pcfOld.yaml') as file:
+        # with open(r'pcfOld.yaml') as file:
+        with open(r'/etc/open5gs/pcfOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -217,8 +220,8 @@ def parsePCF():
         print("Paths have been changed")
 
     try:
-        with open('pcf.yaml', 'w') as outfile:
-            # with open('/etc/open5gs/pcf.yaml', 'w') as outfile:
+        # with open('pcf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/pcf.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
@@ -228,8 +231,8 @@ def parsePCF():
 def parseUDR():
     documents = None
     try:
-        with open(r'udrOld.yaml') as file:
-            # with open(r'/etc/open5gs/udrOld.yaml') as file:
+        # with open(r'udrOld.yaml') as file:
+        with open(r'/etc/open5gs/udrOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -244,8 +247,8 @@ def parseUDR():
         print("Paths have been changed")
 
     try:
-        with open('udr.yaml', 'w') as outfile:
-            # with open('/etc/open5gs/udr.yaml', 'w') as outfile:
+        # with open('udr.yaml', 'w') as outfile:
+        with open('/etc/open5gs/udr.yaml', 'w') as outfile:
             yaml.dump(documents, outfile, default_flow_style=False)
     except Exception as e:
         print(e)
