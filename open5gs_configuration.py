@@ -11,7 +11,7 @@ def find_IP():
 
 
 def change_NRF(document):
-    NRF_IP = "132.32.32.32"
+    NRF_IP = find_IP() 
     print(document["nrf"]["sbi"][0]["addr"][0])
     document["nrf"]["sbi"][0]["addr"][0] = NRF_IP
 
