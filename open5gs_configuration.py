@@ -148,7 +148,7 @@ def parseSMF():
     # print(documents["smf"]["pfcp"][0]['addr'])
     try:
         documents["smf"]["pfcp"][0]['addr'] = own_ip
-        documents["smf"]["pdn"] = doc2["smf"]["pdn"]
+        documents["smf"]["subnet"] = doc2["smf"]["subnet"]
         documents["upf"]["pfcp"] = doc2["upf"]["pfcp"]
         change_NRF(documents)
     except Exception as e:
@@ -188,7 +188,7 @@ def parseUPF():
     try:
         documents["upf"]["pfcp"][0]['addr'] = own_ip
         documents["upf"]["gtpu"][0]['addr'] = own_ip
-        documents["upf"]["pdn"] = doc2["upf"]["pdn"]
+        documents["upf"]["subnet"] = doc2["upf"]["subnet"]
     except:
         print("Paths have been changed")
 
