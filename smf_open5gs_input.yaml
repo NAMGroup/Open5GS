@@ -1,5 +1,5 @@
 smf:
-  pdn:
+  subnet:
     - addr: 10.45.0.1/16
       dev: ogstun
       apn: internet
