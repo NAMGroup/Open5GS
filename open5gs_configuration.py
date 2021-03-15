@@ -12,15 +12,15 @@ def find_IP():
 
 def change_NRF(document):
     NRF_IP = find_IP() 
-    print(document["nrf"]["sbi"][0]["addr"][0])
     document["nrf"]["sbi"][0]["addr"][0] = NRF_IP
+    del document["nrf"]["sbi"][0]["addr"][1]
 
 
 def parseAUSF():
     documents = None
     try:
         # with open(r'ausfOld.yaml') as file:
-        with open(r'/etc/open5gs/ausfOld.yaml') as file:
+        with open(r'/etc/open5gs/ausf.yaml') as file:
 
             documents = yaml.safe_load(file)
     except Exception as e:
@@ -50,7 +50,7 @@ def parseAUSF():
 def parseUDM():
     documents = None
     try:
-        with open(r'/etc/open5gs/upfOld.yaml') as file:
+        with open(r'/etc/open5gs/upf.yaml') as file:
         # with open(r'udmOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
@@ -81,7 +81,7 @@ def parseNRF():
     documents = None
     try:
         # with open(r'nrfOld.yaml') as file:
-        with open(r'/etc/open5gs/nrfOld.yaml') as file:
+        with open(r'/etc/open5gs/nrf.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -91,6 +91,8 @@ def parseNRF():
     # print(documents["nrf"]["sbi"]["addr"][0])
     try:
         documents["nrf"]["sbi"]["addr"][0] = own_ip
+        del documents["nrf"]["sbi"]["addr"][1]
+
     except:
         print("Paths have been changed")
 
@@ -107,7 +109,7 @@ def parseAMF():
     documents = None
     try:
         # with open(r'amfOld.yaml') as file:
-        with open(r'/etc/open5gs/amfOld.yaml') as file:
+        with open(r'/etc/open5gs/amf.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -134,7 +136,7 @@ def parseSMF():
     documents = None
     doc2 = None
     try:
-        with open(r'/etc/open5gs/smfOld.yaml') as file:
+        with open(r'/etc/open5gs/smf.yaml') as file:
         # with open(r'smfOld.yaml') as file:
             documents = yaml.safe_load(file)
         with open(r'/home/ubuntu/Open5GS/smf_open5gs_input.yaml') as file2:
@@ -168,7 +170,7 @@ def parseUPF():
     documents = None
     doc2 = None
     try:
-        with open(r'/etc/open5gs/upfOld.yaml') as file:
+        with open(r'/etc/open5gs/upf.yaml') as file:
         # with open(r'upfOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
@@ -205,7 +207,7 @@ def parsePCF():
     documents = None
     try:
         # with open(r'pcfOld.yaml') as file:
-        with open(r'/etc/open5gs/pcfOld.yaml') as file:
+        with open(r'/etc/open5gs/pcf.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -232,7 +234,7 @@ def parseUDR():
     documents = None
     try:
         # with open(r'udrOld.yaml') as file:
-        with open(r'/etc/open5gs/udrOld.yaml') as file:
+        with open(r'/etc/open5gs/udr.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
@@ -253,6 +255,33 @@ def parseUDR():
     except Exception as e:
         print(e)
         exit()
+        
+        
+def parseNSSF():
+    documents = None
+    try:
+        # with open(r'nssf.yaml') as file:
+        with open(r'/etc/open5gs/nssf.yaml') as file:
+            documents = yaml.safe_load(file)
+    except Exception as e:
+        print(e)
+        exit()
+
+    own_ip = find_IP()
+    print(documents["nssf"]["sbi"][0]["addr"])
+    try:
+        documents["nssf"]["sbi"][0]["addr"] = own_ip
+        change_NRF(documents)
+    except:
+        print("Paths have been changed")
+
+    try:
+        # with open('nssf.yaml', 'w') as outfile:
+        with open('/etc/open5gs/nssf.yaml', 'w') as outfile:
+            yaml.dump(documents, outfile, default_flow_style=False)
+    except Exception as e:
+        print(e)
+        exit()        
 
 
 def main():
@@ -272,6 +301,8 @@ def main():
         parsePCF()
     elif sys.argv[1] == "udr":
         parseUDR()
+    elif sys.argv[1] == "nssf":
+        parseNSSF()
     else:
         print("wrong input")
 
