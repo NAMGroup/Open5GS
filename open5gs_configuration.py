@@ -81,7 +81,7 @@ def parseNRF():
     documents = None
     try:
         # with open(r'nrfOld.yaml') as file:
-        with open(r'/etc/open5gs/nrf.yaml') as file:
+        with open(r'/etc/open5gs/old/nrf.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
         print(e)
