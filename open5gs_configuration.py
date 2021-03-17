@@ -150,6 +150,7 @@ def parseSMF():
     # print(documents["smf"]["pfcp"][0]['addr'])
     try:
         documents["smf"]["pfcp"][0]['addr'] = own_ip
+        del documents["smf"]["pfcp"][0]['addr'][1]
         documents["smf"]["subnet"] = doc2["smf"]["subnet"]
         documents["upf"]["pfcp"] = doc2["upf"]["pfcp"]
         change_NRF(documents)
