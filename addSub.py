@@ -1,7 +1,7 @@
 from Open5GS import Open5GS
 Open5GS_1 = Open5GS("127.0.0.1", 27017)
 
-sub = {'imsi': '901700000000005',\
+sub = {'imsi': '901700000000003',\
  'subscribed_rau_tau_timer': 12,\
  'network_access_mode': 2,\
  'subscriber_status': 0,\
