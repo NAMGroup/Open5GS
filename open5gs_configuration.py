@@ -32,7 +32,6 @@ def parseAUSF():
     # print("--------------------------------->")
     try:
         documents["ausf"]["sbi"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
     # print("--------------------------------->")
@@ -62,7 +61,6 @@ def parseUDM():
     # print("--------------------------------->")
     try:
         documents["udm"]["sbi"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
     # print("--------------------------------->")
@@ -119,7 +117,6 @@ def parseAMF():
     # print(documents["amf"]["ngap"][0]["addr"])
     try:
         documents["amf"]["ngap"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
 
@@ -153,7 +150,6 @@ def parseSMF():
         del documents["smf"]["pfcp"][1]
         documents["smf"]["subnet"] = doc2["smf"]["subnet"]
         documents["upf"]["pfcp"] = doc2["upf"]["pfcp"]
-        change_NRF(documents)
     except Exception as e:
         print(e)
         exit()
@@ -218,7 +214,6 @@ def parsePCF():
     print(documents["pcf"]["sbi"][0]["addr"])
     try:
         documents["pcf"]["sbi"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
 
@@ -245,7 +240,6 @@ def parseUDR():
     print(documents["udr"]["sbi"][0]["addr"])
     try:
         documents["udr"]["sbi"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
 
@@ -272,7 +266,6 @@ def parseNSSF():
     print(documents["nssf"]["sbi"][0]["addr"])
     try:
         documents["nssf"]["sbi"][0]["addr"] = own_ip
-        change_NRF(documents)
     except:
         print("Paths have been changed")
 
