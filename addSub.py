@@ -30,5 +30,7 @@ sub = {'imsi': '901700000000003',\
 print(Open5GS_1.AddSubscriber(sub))
 #print(Open5GS_1.GetSubscriber('901700000000003'))
 
+#print(Open5GS_1.GetSubscribers())
+
 #print(Open5GS_1.GetSubscriber('901700000000004'))
 
