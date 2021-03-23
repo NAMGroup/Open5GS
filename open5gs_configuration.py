@@ -1,6 +1,7 @@
 import yaml
 import socket
 import sys
+import netifaces
 
 
 def find_IP():
@@ -116,7 +117,7 @@ def parseAMF():
     own_ip = find_IP()
     # print(documents["amf"]["ngap"][0]["addr"])
     try:
-        documents["amf"]["ngap"][0]["addr"] = own_ip
+        documents["amf"]["ngap"][0]["addr"] = netifaces.ifaddresses('ens4')[2][0]['addr']
     except:
         print("Paths have been changed")
 
@@ -146,7 +147,7 @@ def parseSMF():
     own_ip = find_IP()
     # print(documents["smf"]["pfcp"][0]['addr'])
     try:
-        documents["smf"]["pfcp"][0]['addr'] = own_ip
+        documents["smf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
         del documents["smf"]["pfcp"][1]
         documents["smf"]["subnet"] = doc2["smf"]["subnet"]
         documents["upf"]["pfcp"] = doc2["upf"]["pfcp"]
@@ -185,8 +186,8 @@ def parseUPF():
     own_ip = find_IP()
     # print(documents["upf"])
     try:
-        documents["upf"]["pfcp"][0]['addr'] = own_ip
-        documents["upf"]["gtpu"][0]['addr'] = own_ip
+        documents["upf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
+        documents["upf"]["gtpu"][0]['addr'] = netifaces.ifaddresses('ens4')[2][0]['addr']
         documents["upf"]["subnet"] = doc2["upf"]["subnet"]
     except:
         print("Paths have been changed")
