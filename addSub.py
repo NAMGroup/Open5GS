@@ -7,6 +7,7 @@ sub = {'imsi': '901700000000003',\
  'subscriber_status': 0,\
  'access_restriction_data': 32,\
  'slice': [{'sst': 1,\
+            'sd': 1,\
             'default_indicator': True,\
             'session': [{'name': 'internet',\
                          'type': 3,\
