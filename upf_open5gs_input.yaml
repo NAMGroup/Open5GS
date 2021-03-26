@@ -2,5 +2,5 @@ upf:
   subnet:
     - addr: 10.45.0.1/16
       dev: ogstun
-      apn: internet
+      dnn: internet
     #- addr: cafe::1/64
