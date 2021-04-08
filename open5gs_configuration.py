@@ -122,6 +122,7 @@ def parseAMF():
         #documents["amf"]["ngap"][0]["addr"] = netifaces.ifaddresses('ens4')[2][0]['addr']
         documents["amf"]["ngap"][0]["addr"] = own_ip
         documents["amf"]["sbi"][0]['addr'] = own_ip
+        documents["amf"]["plmn_support"][0]["s_nssai"][0]["sd"]=1
     except:
         print("Paths have been changed")
 
