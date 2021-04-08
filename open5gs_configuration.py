@@ -14,7 +14,8 @@ def find_IP():
 def change_NRF(document):
     NRF_IP = find_IP() 
     document["nrf"]["sbi"][0]["addr"][0] = NRF_IP
-    del document["nrf"]["sbi"][0]["addr"][1]
+    if document["nrf"]["sbi"][0]["addr"][1] = "::1":
+        del document["nrf"]["sbi"][0]["addr"][1]
 
 
 def parseAUSF():
@@ -90,7 +91,8 @@ def parseNRF():
     # print(documents["nrf"]["sbi"]["addr"][0])
     try:
         documents["nrf"]["sbi"]["addr"][0] = own_ip
-        del documents["nrf"]["sbi"]["addr"][1]
+        if documents["nrf"]["sbi"]["addr"][1] = "::1":
+            del documents["nrf"]["sbi"]["addr"][1]
 
     except:
         print("Paths have been changed")
@@ -117,7 +119,9 @@ def parseAMF():
     own_ip = find_IP()
     # print(documents["amf"]["ngap"][0]["addr"])
     try:
-        documents["amf"]["ngap"][0]["addr"] = netifaces.ifaddresses('ens4')[2][0]['addr']
+        #documents["amf"]["ngap"][0]["addr"] = netifaces.ifaddresses('ens4')[2][0]['addr']
+        documents["amf"]["ngap"][0]["addr"] = own_ip
+        documents["amf"]["sbi"][0]['addr'] = own_ip
     except:
         print("Paths have been changed")
 
@@ -147,8 +151,11 @@ def parseSMF():
     own_ip = find_IP()
     # print(documents["smf"]["pfcp"][0]['addr'])
     try:
-        documents["smf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
-        del documents["smf"]["pfcp"][1]
+        #documents["smf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
+        documents["smf"]["pfcp"][0]['addr'] = own_ip
+        documents["smf"]["sbi"][0]['addr'] = own_ip
+        if documents["smf"]["pfcp"][1]['addr'] == "::1":
+            del documents["smf"]["pfcp"][1]
         documents["smf"]["subnet"] = doc2["smf"]["subnet"]
         documents["upf"]["pfcp"] = doc2["upf"]["pfcp"]
     except Exception as e:
@@ -186,8 +193,10 @@ def parseUPF():
     own_ip = find_IP()
     # print(documents["upf"])
     try:
-        documents["upf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
-        documents["upf"]["gtpu"][0]['addr'] = netifaces.ifaddresses('ens4')[2][0]['addr']
+        #documents["upf"]["pfcp"][0]['addr'] = netifaces.ifaddresses('ens5')[2][0]['addr']
+        #documents["upf"]["gtpu"][0]['addr'] = netifaces.ifaddresses('ens4')[2][0]['addr']
+        documents["upf"]["pfcp"][0]['addr'] = own_ip
+        documents["upf"]["pfcp"][0]['addr'] = own_ip
         documents["upf"]["subnet"] = doc2["upf"]["subnet"]
     except:
         print("Paths have been changed")
