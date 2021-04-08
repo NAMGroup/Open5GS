@@ -14,7 +14,7 @@ def find_IP():
 def change_NRF(document):
     NRF_IP = find_IP() 
     document["nrf"]["sbi"][0]["addr"][0] = NRF_IP
-    if document["nrf"]["sbi"][0]["addr"][1] = "::1":
+    if document["nrf"]["sbi"][0]["addr"][1] == "::1":
         del document["nrf"]["sbi"][0]["addr"][1]
 
 
@@ -91,7 +91,7 @@ def parseNRF():
     # print(documents["nrf"]["sbi"]["addr"][0])
     try:
         documents["nrf"]["sbi"]["addr"][0] = own_ip
-        if documents["nrf"]["sbi"]["addr"][1] = "::1":
+        if documents["nrf"]["sbi"]["addr"][1] == "::1":
             del documents["nrf"]["sbi"]["addr"][1]
 
     except:
