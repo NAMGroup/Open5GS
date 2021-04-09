@@ -51,7 +51,7 @@ def parseAUSF():
 def parseUDM():
     documents = None
     try:
-        with open(r'/etc/open5gs/upf.yaml') as file:
+        with open(r'/etc/open5gs/udm.yaml') as file:
         # with open(r'udmOld.yaml') as file:
             documents = yaml.safe_load(file)
     except Exception as e:
