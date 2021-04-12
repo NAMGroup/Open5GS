@@ -10,7 +10,7 @@ def find_IP():
         return socket.gethostbyname(socket.gethostname())
     except:
         print("IP fetch error")
-
+    
 
 def parseAUSF():
     documents = None
@@ -41,6 +41,8 @@ def parseAUSF():
     except Exception as e:
         print(e)
         exit()
+    
+    os.system('sudo systemctl restart open5gs-ausfd')
 
 
 def parseUDM():
@@ -71,6 +73,8 @@ def parseUDM():
     except Exception as e:
         print(e)
         exit()
+    
+    os.system('sudo systemctl restart open5gs-udmd')
 
 
 def parseNRF():
@@ -101,6 +105,8 @@ def parseNRF():
     except Exception as e:
         print(e)
         exit()
+
+    os.system('sudo systemctl restart open5gs-nrfd')
 
 
 def parseAMF():
@@ -169,6 +175,8 @@ def parseSMF():
     except Exception as e:
         print(e)
         exit()
+    
+    os.system('sudo systemctl restart open5gs-smfd')
 
 
 def parseUPF():
@@ -208,6 +216,8 @@ def parseUPF():
     except Exception as e:
         print(e)
         exit()
+    
+    os.system('sudo systemctl restart open5gs-upfd')
 
 
 def parsePCF():
@@ -236,6 +246,8 @@ def parsePCF():
         print(e)
         exit()
 
+    os.system('sudo systemctl restart open5gs-pcfd')
+
 
 def parseUDR():
     documents = None
@@ -261,7 +273,9 @@ def parseUDR():
     except Exception as e:
         print(e)
         exit()
-        
+       
+    os.system('sudo systemctl restart open5gs-udrd')
+
         
 def parseNSSF():
     documents = None
@@ -288,7 +302,9 @@ def parseNSSF():
         print(e)
         exit()        
 
+    os.system('sudo systemctl restart open5gs-nssfd')
 
+    
 def main():
     if sys.argv[1] == "ausf":
         parseAUSF()
