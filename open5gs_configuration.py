@@ -11,13 +11,6 @@ def find_IP():
         print("IP fetch error")
 
 
-def change_NRF(document):
-    NRF_IP = find_IP() 
-    document["nrf"]["sbi"][0]["addr"][0] = NRF_IP
-    if document["nrf"]["sbi"][0]["addr"][1] == "::1":
-        del document["nrf"]["sbi"][0]["addr"][1]
-
-
 def parseAUSF():
     documents = None
     try:
@@ -34,6 +27,7 @@ def parseAUSF():
     # print("--------------------------------->")
     try:
         documents["ausf"]["sbi"][0]["addr"] = own_ip
+        documents["ausf"]['sbi'][0]['port'] = 7781
     except:
         print("Paths have been changed")
     # print("--------------------------------->")
@@ -63,6 +57,7 @@ def parseUDM():
     # print("--------------------------------->")
     try:
         documents["udm"]["sbi"][0]["addr"] = own_ip
+        documents["udm"]['sbi'][0]['port'] = 7779
     except:
         print("Paths have been changed")
     # print("--------------------------------->")
@@ -91,6 +86,7 @@ def parseNRF():
     # print(documents["nrf"]["sbi"]["addr"][0])
     try:
         documents["nrf"]["sbi"]["addr"][0] = own_ip
+        documents["nrf"]['sbi'][0]['port'] = 7778
         if documents["nrf"]["sbi"]["addr"][1] == "::1":
             del documents["nrf"]["sbi"]["addr"][1]
 
@@ -122,7 +118,7 @@ def parseAMF():
         #documents["amf"]["ngap"][0]["addr"] = netifaces.ifaddresses('ens4')[2][0]['addr']
         documents["amf"]["ngap"][0]["addr"] = own_ip
         documents["amf"]["sbi"][0]['addr'] = own_ip
-        documents["amf"]["plmn_support"][0]["s_nssai"][0]["sd"]=1
+        documents["amf"]["plmn_support"][0]["s_nssai"][0]["sd"] = 1
     except:
         print("Paths have been changed")
 
@@ -225,6 +221,7 @@ def parsePCF():
     print(documents["pcf"]["sbi"][0]["addr"])
     try:
         documents["pcf"]["sbi"][0]["addr"] = own_ip
+        documents["pcf"]['sbi'][0]['port'] = 7780
     except:
         print("Paths have been changed")
 
