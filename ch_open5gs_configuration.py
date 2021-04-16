@@ -216,7 +216,14 @@ def parseUPF():
     except Exception as e:
         print(e)
         exit()
-    
+        
+    os.system(sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf)
+    os.system(sudo sysctl -p)
+    os.system(sudo ip tuntap add name ogstun mode tun)
+    os.system(sudo ip addr add 10.45.0.1/16 dev ogstun)
+    os.system(sudo ip addr add "cafe::1/64" dev ogstun)
+    os.system(sudo ip link set ogstun up)
+    os.system(sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE)
     os.system('sudo systemctl restart open5gs-upfd')
 
 
